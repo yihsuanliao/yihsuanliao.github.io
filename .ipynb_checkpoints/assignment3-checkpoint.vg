@@ -1,0 +1,21 @@
+{
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "height": 100,
+    "data": {
+        "url": "building_inventory.csv", "formatType": "csv"
+    },
+    "transform": [{
+        "filter": {"field": "Year Constructed", "gt": 0}
+    }],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+          "field": "Year Constructed"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "Total Floors",
+          "type": "quantitative"
+        }
+    }
+}
