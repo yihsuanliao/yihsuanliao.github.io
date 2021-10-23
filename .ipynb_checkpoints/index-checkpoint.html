@@ -3,35 +3,39 @@
         <script src="https://cdn.jsdelivr.net/npm/vega@5"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-lite@5"></script>
         <script src="https://cdn.jsdelivr.net/npm/vega-embed@6"></script>
-        <title>This is my example homepage.</title>
+        <title>This is my IS 445 assignment3.</title>
     </head>
     <body>
         <p>
-            This is some text.
+            This is IS 445 assignment 3.
         </p>
         <p>
-            This is some more text.
+            The histogram is the relationship of year constructed and the sum of total floors.
         </p>
         <div id="myviz">
         </div>
     </body>
     <script>
         mySpec = {
-  "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
-  "data": {"url": "building_inventory.csv"},
-  "mark": "bar",
-  "encoding": {
-    "x": {
-      "bin": true,
-      "field": "Congress Dist",
-      "type": "quantitative"
+    "$schema": "https://vega.github.io/schema/vega-lite/v4.json",
+    "height": 100,
+    "data": {
+        "url": "building_inventory.csv", "formatType": "csv"
     },
-    "y": {
-      "aggregate": "sum",
-      "field": "Square Footage"
-      "type": "quantitative"
+    "transform": [{
+        "filter": {"field": "Year Constructed", "gt": 0}
+    }],
+    "mark": "bar",
+    "encoding": {
+        "x": {
+          "field": "Year Constructed"
+        },
+        "y": {
+          "aggregate": "sum",
+          "field": "Total Floors",
+          "type": "quantitative"
+        }
     }
-  }
 };
         vegaEmbed('#myviz', mySpec);
     </script>
